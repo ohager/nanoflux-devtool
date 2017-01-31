@@ -3,7 +3,8 @@ node_js:
   - 6
 install:
   - npm install
-  - npm install -g codecov
+# removed due to build issues with travis --- Out of Memory?!
+# - npm install -g codecov
 cache:
   directories:
     - node_modules
