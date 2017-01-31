@@ -1,0 +1,11 @@
+.devtools-container {
+	position: absolute;
+	top: 0;
+	background-color: #111;
+	color: #efefef;
+	opacity: 0.95;
+	min-height: 100%;
+	height: 100%;
+	width: 240px;
+	box-shadow: 5px 0px 2px 0px rgba(2, 2, 2, 0.9);
+}

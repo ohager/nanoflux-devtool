@@ -7,3 +7,5 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 );
+
+document.title = "DevTools Demo";
