@@ -3,13 +3,13 @@ node_js:
   - 6
 install:
   - npm install
-# removed due to build issues with travis --- Out of Memory?!
-# - npm install -g codecov
+  - npm install -g codecov
 cache:
   directories:
     - node_modules
 script:
   - npm test -- --coverage && codecov
-  - npm run build
+# removed due to build issues with travis --- Out of Memory?!
+#  - npm run build
 after-success:
   - bash <(curl -s https://codecov.io/bash)
