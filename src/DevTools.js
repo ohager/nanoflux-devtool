@@ -1,11 +1,37 @@
-import React, {Component} from 'react';
+import React, {Component, createFactory} from 'react';
+import JsonInspector from 'react-json-inspector';
 
+import './css/JsonInspector.css';
 import './css/DevTools.css';
+
+
+class CustomValueEditor extends Component{
+
+	render(){
+		if(this.props.isKey) return null;
+
+		return (
+			<input className='json-inspector__selection'
+			       size={Math.max(1, this.props.value.length)}
+			       spellCheck={false} value={this.props.value}
+			       onClick={e => e.stopPropagation()}
+			       onFocus={e => e.target.select()}
+			       onChange={e => console.log(e.target.value)}/>
+		)
+	}
+}
+CustomValueEditor.defaultProps = {
+		value : ''
+}
+
+
+
+var customValueEditor = createFactory(CustomValueEditor);
 
 const DevToolsStateItem  = (props) =>
 		(
 			<div>
-				<p>{JSON.stringify(props.storeState)}</p>
+				<JsonInspector data={props.storeState} search={false} interactiveLabel={customValueEditor}/>
 			</div>
 		)
 

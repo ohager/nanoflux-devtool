@@ -1,4 +1,9 @@
+.devtools-container h2{
+	text-align: center;
+}
+
 .devtools-container {
+	text-align: left;
 	position: absolute;
 	top: 0;
 	background-color: #111;
