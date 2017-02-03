@@ -1,9 +1,13 @@
 import React from 'react';
-import Renderer from 'react-test-renderer';
-import DevTools from '../DevTools'
-import FusionAdapter from '../FusionAdapter'
+import DevTools from '../DevTools';
+import FusionAdapter from '../FusionAdapter';
+import {shallow, mount, render} from 'enzyme';
 
 it('Renders initial DevTools', () => {
-  const tree = Renderer.create(<DevTools storeAdapter={new FusionAdapter()}/>).toJSON();
-  expect(tree).toMatchSnapshot();
+	const wrapper = shallow(<DevTools storeAdapter={new FusionAdapter()}/>);
+	const title = <h2>Flux DevTools</h2>;
+	expect(wrapper.contains(title)).toEqual(true);
+	expect(wrapper.find('.devtools-container').length).toEqual(1);
 });
+
+// TODO: better tests!
