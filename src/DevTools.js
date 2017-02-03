@@ -1,64 +1,41 @@
 import React, {Component, createFactory} from 'react';
 import JsonInspector from 'react-json-inspector';
+import JsonInspectorValueEditorFactory from './JsonInspectorValueEditorFactory'
 
 import './css/JsonInspector.css';
 import './css/DevTools.css';
 
-
-class CustomValueEditor extends Component{
-
-	render(){
-		if(this.props.isKey) return null;
-
-		return (
-			<input className='json-inspector__selection'
-			       size={Math.max(1, this.props.value.length)}
-			       spellCheck={false} value={this.props.value}
-			       onClick={e => e.stopPropagation()}
-			       onFocus={e => e.target.select()}
-			       onChange={e => console.log(e.target.value)}/>
-		)
-	}
-}
-CustomValueEditor.defaultProps = {
-		value : ''
-}
-
-
-
-var customValueEditor = createFactory(CustomValueEditor);
-
-const DevToolsStateItem  = (props) =>
-		(
-			<div>
-				<JsonInspector data={props.storeState} search={false} interactiveLabel={customValueEditor}/>
-			</div>
-		)
+const DevToolsStateItem = (props) =>
+	(
+		<div>
+			<JsonInspector data={props.storeState} search={false} interactiveLabel={JsonInspectorValueEditorFactory}/>
+		</div>
+	)
 
 DevToolsStateItem.propTypes = {
-	storeState : React.PropTypes.object
+	storeState: React.PropTypes.object
 };
 
 class DevTools extends Component {
 
 	constructor() {
 		super();
-		this.state = { };
+		this.state = {};
 	}
 
-	onStoreUpdate(state){
-		this.setState( {storeState: state });
+	onStoreUpdate(state) {
+		this.setState({storeState: state});
 	}
 
-	componentWillMount(){
+	componentWillMount() {
 		this.props.storeAdapter.mount(this, this.onStoreUpdate);
 	}
 
-	componentWillUnmount(){
+	componentWillUnmount() {
 		this.props.storeAdapter.unmount();
 	}
 
-	renderStateItems(){
+	renderStateItems() {
 		//const stateProps = Object.keys(this.state.storeState);
 		//return stateProps.map( (state, index) => <DevToolsStateItem key={index}/>)
 		return <DevToolsStateItem storeState={this.state.storeState}/>
@@ -76,7 +53,7 @@ class DevTools extends Component {
 }
 
 DevTools.propTypes = {
-	storeAdapter : React.PropTypes.object.isRequired
+	storeAdapter: React.PropTypes.object.isRequired
 };
 
 export default DevTools;
