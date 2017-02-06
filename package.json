@@ -27,6 +27,7 @@
     "react-test-renderer": "^15.4.2"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-json-inspector": "^7.0.0"

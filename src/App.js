@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './css/App.css';
+import DemoComponent from './DemoComponent';
 import DevTools from './DevTools'
 import FusionAdapter from './FusionAdapter'
 import FusionActors from './FusionActors'
+
 
 class App extends Component {
 	constructor(){
@@ -33,6 +35,7 @@ class App extends Component {
 				<div className="App-container">
 					<input type="text" onChange={this.onTextChange} />
 					<input type="checkbox" onChange={this.onToggle} />
+					<DemoComponent/>
 				</div>
 			</div>
 		);

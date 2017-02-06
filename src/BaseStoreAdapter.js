@@ -1,3 +1,4 @@
+/* eslint-disable */
 class BaseStoreAdapter {
 
 	mount(context, updateCallback) {
@@ -9,6 +10,10 @@ class BaseStoreAdapter {
 	}
 
 	getState() {
+		throw "getState(): Implement me!"
+	}
+
+	setState(value, context){
 		throw "getState(): Implement me!"
 	}
 }

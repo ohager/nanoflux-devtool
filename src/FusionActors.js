@@ -1,4 +1,4 @@
-import Nanoflux from 'nanoflux-fusion/src/nanoflux-fusion';
+import Nanoflux from 'nanoflux-fusion';
 
 // define fusionator(s)
 Nanoflux.createFusionator({
