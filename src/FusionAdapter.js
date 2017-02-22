@@ -19,8 +19,17 @@ const setStateActor = Nanoflux.getFusionActor('setState', DevToolsNamespace);
 class FusionAdapter extends BaseStoreAdapter {
 
 	mount(context, updateCallback) {
+		let lastCalledAction = "";
 		this.fusionStore = Nanoflux.getFusionStore();
-		this.listener = this.fusionStore.subscribe(context, updateCallback);
+
+		this.fusionStore.use( (newState, oldState, actionName) => {
+			lastCalledAction = actionName;
+			return newState;
+		});
+
+		this.listener = this.fusionStore.subscribe(context, (state) => {
+			updateCallback.call(context, this.getState(), lastCalledAction);
+		});
 		console.log("Fusion Adapter mounted");
 	}
 

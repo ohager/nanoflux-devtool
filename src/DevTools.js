@@ -16,9 +16,9 @@ class DevTools extends Component {
 		return { storeAdapter: this.props.storeAdapter }
 	}
 
-	onStoreUpdate(state) {
+	onStoreUpdate(state, actionName ) {
 		let history = this.state.history;
-		history.unshift(_.cloneDeep(state));
+		history.unshift({action: actionName, state:_.cloneDeep(state)});
 		this.setState({history: history});
 	}
 
@@ -32,19 +32,18 @@ class DevTools extends Component {
 	}
 
 	onHistoryItemClicked(index){
-		console.log("selected index", index);
 		this.setState({selectedHistoryItem: index});
 	}
 
 	render() {
 
-		const currentState = this.state.history[this.state.selectedHistoryItem] || {};
+		const currentState = this.state.history[this.state.selectedHistoryItem] || { state: {}};
 
 		return (
 			<div className="devtools-container">
 				<h2>Flux DevTools</h2>
 				<hr/>
-				<DevToolsStateEditor state={currentState} editorFactory={this.valueEditorFactory}/>
+				<DevToolsStateEditor state={currentState.state} editorFactory={this.valueEditorFactory}/>
 				<hr/>
 				<DevToolsHistory historyItems={this.state.history} onSelected={this.onHistoryItemClicked} selectedItemIndex={this.state.selectedHistoryItem}/>
 			</div>
